@@ -1,28 +1,34 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="app">
+    <list-wrapper :data="listData" v-slot="data">
+      <list-item v-for="item in data.list" :key="item.value" :data="item"></list-item>
+    </list-wrapper>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ListWrapper from '@/components/ListWrapper'
+import ListItem from '@/components/ListItem'
 
 export default {
   name: 'app',
+  data() {
+    return {
+      listData: [{
+        name: '张大亨',
+        value: 'dahengzhang'
+      }, {
+        name: '沈培',
+        value: 'shenpei'
+      }]
+    }
+  },
   components: {
-    HelloWorld
+    ListWrapper,
+    ListItem
   }
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
